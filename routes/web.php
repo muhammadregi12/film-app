@@ -19,6 +19,10 @@ use Inertia\Inertia;
 
 // get movies
 Route::get('/', function () {
+    return redirect('/movies');
+});
+
+Route::get('/movies', function () {
     $query = Request::get('query');
     $genreId = Request::get('genre');
 
@@ -42,7 +46,6 @@ Route::get('/', function () {
         ]);
     }
 
-    // Get genre list (untuk ditampilkan di tombol filter)
     $genresResponse = Http::get('https://api.themoviedb.org/3/genre/movie/list', [
         'api_key' => config('services.tmdb.key'),
         'language' => 'id-ID',
